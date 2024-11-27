@@ -31,7 +31,7 @@ public class Measure {
     private Instant updatedAt;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "customer_id", referencedColumnName = "uuid")
+    @JoinColumn(name = "customer_code", referencedColumnName = "customer_code")
     private Customer customer;
 
 }

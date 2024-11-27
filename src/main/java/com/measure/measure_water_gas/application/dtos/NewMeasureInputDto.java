@@ -12,29 +12,34 @@ import org.springframework.data.annotation.Reference;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.Optional;
+import java.util.UUID;
 
 @Data
 public class NewMeasureInputDto {
-    @Schema(description = "URL da imagem associada à medição", example = "http://example.com/image.jpg")
-    private Instant measureDatetime;
-
-    @NotNull
-    @Schema(description = "Tipo da medição", example = "WATER")
-    private MeasureTypeEnum measureType;
-
     @NotNull
     @Size(min = 1, max = 50)
     @Schema(description = "Data e hora da medição", example = "2024-11-24T10:30:00")
-    private String imageUrl;;
+    private String image;
 
-    @NotNull
     @Schema(description = "Informações do cliente associado à medição")
     @DtoReference(Customer.class)
     private CustomerDTO customer;
 
+    @Schema(description = "URL da imagem associada à medição", example = "http://example.com/image.jpg")
+    private Instant measure_datetime;
+
+    @NotNull
+    @Schema(description = "Tipo da medição", example = "WATER")
+    private MeasureTypeEnum measure_type;
+
+
+
     @Data
-    private static class CustomerDTO {
-        private String customerCode;
+    public static class CustomerDTO {
+        @NotNull(message = "Customer code is required when customer is provided.")
+        @Size(min = 1, max = 50)
+        public UUID customerCode;
     }
 }
 

@@ -5,6 +5,8 @@ import com.measure.measure_water_gas.domain.interfaces.repository.CustomerReposi
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface JpaCustomerRepository extends JpaRepository<Customer, Long>, CustomerRepository {
+public interface JpaCustomerRepository extends JpaRepository<Customer, UUID>, CustomerRepository {
 }

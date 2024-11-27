@@ -7,6 +7,8 @@ import com.measure.measure_water_gas.domain.interfaces.repository.MeasureReposit
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface JpaMeasureRepository extends JpaRepository<Measure, Long>, MeasureRepository {
+public interface JpaMeasureRepository extends JpaRepository<Measure, UUID>, MeasureRepository {
 }

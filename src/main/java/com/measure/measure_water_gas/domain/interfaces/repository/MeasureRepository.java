@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
-public interface MeasureRepository extends JpaRepository<Measure, Long> {
+public interface MeasureRepository extends JpaRepository<Measure, UUID> {
     List<Measure> findByMeasureDatetime(Instant measureDatetime);
 }
