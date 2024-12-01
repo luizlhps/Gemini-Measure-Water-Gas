@@ -22,8 +22,8 @@ public class CreateCustomerUseCaseImpl implements CreateCustomerUseCase {
     public CustomerCreateOutputDto execute() {
 
         Customer customer = new Customer();
-        customerRepository.save(customer);
+        Customer customerCreated = customerRepository.save(customer);
 
-        return modelMapper.map(customer, CustomerCreateOutputDto.class);
+        return modelMapper.map(customerCreated, CustomerCreateOutputDto.class);
     }
 }

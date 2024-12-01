@@ -109,7 +109,7 @@ public class CreateMeasureUseCaseImpl implements CreateMeasureUseCase {
         } else {
             // criar o customer
             CustomerCreateOutputDto customerCreateOutputDto = createCustomerUseCase.execute();
-            Customer customer = modelMapper.map(input, Customer.class);
+            Customer customer = modelMapper.map(customerCreateOutputDto, Customer.class);
             return customer;
         }
 

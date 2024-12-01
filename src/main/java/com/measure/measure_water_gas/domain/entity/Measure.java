@@ -25,6 +25,8 @@ public class Measure {
     private Instant measureDatetime;
     private String measureType;
     private boolean hasConfirmed;
+
+    @Column(columnDefinition = "TEXT")
     private String imageUrl;
     private boolean isDeleted;
     private Instant createdAt;
