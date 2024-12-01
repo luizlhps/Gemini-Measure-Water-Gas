@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "customer_code")
+    @Column(name = "customer_code", nullable = false, unique = true)
     private UUID customerCode;
 
     private boolean isDeleted;

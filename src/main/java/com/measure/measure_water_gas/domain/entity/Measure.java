@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.checkerframework.checker.signature.qual.Identifier;
-import org.checkerframework.common.aliasing.qual.Unique;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.util.Date;
@@ -29,11 +29,15 @@ public class Measure {
     @Column(columnDefinition = "TEXT")
     private String imageUrl;
     private boolean isDeleted;
-    private Instant createdAt;
-    private Instant updatedAt;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "customer_code", referencedColumnName = "customer_code")
+    @CreationTimestamp
+    private Date createdAt;
+
+    @UpdateTimestamp
+    private Date updatedAt;
+
+    @ManyToOne()
+    @JoinColumn(name = "customer_code", referencedColumnName = "customer_code", foreignKey = @ForeignKey(name = "FK_measure_customer"))
     private Customer customer;
 
 }
