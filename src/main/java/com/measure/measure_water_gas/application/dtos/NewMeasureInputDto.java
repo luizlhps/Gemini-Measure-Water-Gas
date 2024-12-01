@@ -40,6 +40,9 @@ public class NewMeasureInputDto {
         @NotNull(message = "Customer code is required when customer is provided.")
         @Size(min = 1, max = 50)
         public UUID customerCode;
+
+        public CustomerDTO(String customerCode) {
+        }
     }
 }
 
