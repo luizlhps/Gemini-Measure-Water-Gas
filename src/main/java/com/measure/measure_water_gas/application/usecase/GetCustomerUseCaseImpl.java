@@ -16,6 +16,6 @@ public class GetCustomerUseCaseImpl implements GetCustomerUseCase {
     }
 
     public Customer execute (UUID customerCode) {
-        return customerRepository.findById(customerCode).orElse(null);
+        return customerRepository.findActiveByCustomerCode(customerCode).orElse(null);
     }
 }

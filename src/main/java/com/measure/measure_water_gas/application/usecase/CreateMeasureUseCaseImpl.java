@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MimeType;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -84,7 +85,7 @@ public class CreateMeasureUseCaseImpl implements CreateMeasureUseCase {
     }
 
     private void validateMeasureForMonth(NewMeasureInputDto input) throws ConflictException {
-        Instant dateMeasure = input.getMeasure_datetime();
+        Instant dateMeasure = input.getMeasure_datetime().truncatedTo(ChronoUnit.DAYS);
         List<Measure> existsByMonthAndYear = measureRepository.findByMeasureDatetime(dateMeasure);
 
         if (!existsByMonthAndYear.isEmpty()) {
@@ -140,7 +141,7 @@ public class CreateMeasureUseCaseImpl implements CreateMeasureUseCase {
 
     private MeasureCreateOutputDto createMeasure (NewMeasureInputDto input, String url, Customer customer) {
         MeasureCreateInputDto measureCreateInputDto = new MeasureCreateInputDto(
-                Instant.now(),
+                input.getMeasure_datetime(),
                 input.getMeasure_type().toString(),
                 false,
                 url,
